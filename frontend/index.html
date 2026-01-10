@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionExtract AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-mesh"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-layer-group"></i> VisionExtract
+            </div>
+            <div class="status" id="status-badge">System Ready</div>
+        </header>
+
+        <main>
+            <div class="upload-zone" id="drop-zone">
+                <div class="icon-container">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+                <h2>Drag & Drop Image</h2>
+                <p>or click to browse</p>
+                <input type="file" id="file-input" accept="image/*" hidden>
+            </div>
+
+            <div class="editor-container hidden" id="editor-ui">
+                <div class="canvas-wrapper">
+                    <div class="image-stage" id="image-stage">
+                        <img id="result-image" src="" alt="Result">
+                        
+                        <div class="loader-overlay hidden" id="loader-ui">
+                            <div class="scanner-ring"></div>
+                            <div class="scanner-core"></div>
+                            <p class="loading-text">SCANNING...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="controls-panel">
+                    <h3><i class="fa-solid fa-sliders"></i> Tools</h3>
+                    
+                    <div class="control-group">
+                        <label>Background</label>
+                        <div class="color-options">
+                            <div class="color-btn transparent active" onclick="setBg('transparent')" title="Transparent"></div>
+                            <div class="color-btn white" onclick="setBg('#ffffff')" title="White"></div>
+                            <div class="color-btn black" onclick="setBg('#000000')" title="Black"></div>
+                            <div class="color-btn gradient" onclick="setBg('linear-gradient(135deg, #667eea 0%, #764ba2 100%)')" title="Gradient"></div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label>Brightness</label>
+                        <input type="range" id="brightness" min="50" max="150" value="100">
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn primary" onclick="downloadImage()">Download PNG</button>
+                        <button class="btn secondary" onclick="resetApp()">New Image</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
