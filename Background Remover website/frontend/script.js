@@ -18,7 +18,7 @@ async function processImage(file) {
     dropZone.classList.add('hidden');
     
     // 2. SHOW PREVIEW IMMEDIATELY
-    // Create a temporary URL for the uploaded file
+    // Create a temporary URL for the uploaded file so user sees it instantly
     const tempUrl = URL.createObjectURL(file);
     resultImg.src = tempUrl;
     
@@ -35,8 +35,8 @@ async function processImage(file) {
     formData.append('file', file);
 
     try {
-        // Send to Python Backend
-        const response = await fetch('https://YOUR-LINK-HERE.ngrok-free.app/remove-bg/', {
+        // --- 🟢 CRITICAL: This connects to your Laptop via Ngrok ---
+        const response = await fetch('https://miller-ossiferous-onita.ngrok-free.dev/remove-bg/', {
             method: 'POST',
             body: formData
         });
@@ -46,10 +46,10 @@ async function processImage(file) {
         const blob = await response.blob();
         
         // 3. SWAP PREVIEW WITH RESULT
-        // Replace the "temp" original image with the AI result
+        // Replace the "temp" original image with the AI cut-out result
         resultImg.src = URL.createObjectURL(blob);
         
-        // Hide the loader overlay
+        // Hide the loader overlay (reveal the result)
         loaderUi.classList.add('hidden'); 
         
         statusBadge.innerText = "✅ Extraction Complete";
@@ -57,22 +57,23 @@ async function processImage(file) {
         statusBadge.style.background = "rgba(16, 185, 129, 0.2)";
 
     } catch (error) {
-        alert("Is backend.py running? " + error);
+        console.error(error);
+        alert("Connection Error! \n\n1. Is your laptop running 'python backend.py'?\n2. Is the Ngrok window open?");
         location.reload();
     }
 }
 
-// Adjustments
+// Adjustments (Brightness)
 brightnessInput.addEventListener('input', (e) => {
     resultImg.style.filter = `brightness(${e.target.value}%)`;
 });
 
-// Background Color
+// Background Color Changer
 function setBg(color) {
     imageStage.style.background = color;
 }
 
-// Actions
+// Download Action
 function downloadImage() {
     const link = document.createElement('a');
     link.href = resultImg.src;
@@ -80,6 +81,7 @@ function downloadImage() {
     link.click();
 }
 
+// Reset Action
 function resetApp() {
     location.reload();
 }
