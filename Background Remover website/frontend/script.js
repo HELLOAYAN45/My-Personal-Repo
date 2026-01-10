@@ -36,7 +36,7 @@ async function processImage(file) {
 
     try {
         // Send to Python Backend
-        const response = await fetch('http://127.0.0.1:8000/remove-bg/', {
+        const response = await fetch('https://YOUR-LINK-HERE.ngrok-free.app/remove-bg/', {
             method: 'POST',
             body: formData
         });
