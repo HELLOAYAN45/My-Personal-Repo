@@ -115,4 +115,4 @@ function downloadImage() {
 
 function resetApp() {
     location.reload();
-}
+}//jfhffgfgf
