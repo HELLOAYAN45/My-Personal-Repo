@@ -12,14 +12,14 @@
     <div class="app-container">
         <header>
             <div class="logo">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2 17L12 22L22 17" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2 12L12 17L22 12" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
+                    <path d="M2 17L12 22L22 17"/>
+                    <path d="M2 12L12 17L22 12"/>
                 </svg>
                 <h1>VisionExtract</h1>
             </div>
-            <div id="status-badge" class="badge">⚡ Neural Network Active...</div>
+            <div id="status-badge" class="badge">⚡ High-Res Model Active</div>
         </header>
 
         <main>
@@ -34,28 +34,26 @@
                                 <polyline points="21 15 16 10 5 21"></polyline>
                             </svg>
                         </div>
-                        <h3>Upload an Image</h3>
-                        <p>Drag & drop or click to browse</p>
+                        <h3>Upload Image</h3>
+                        <p>Drag & drop or click</p>
                         <input type="file" id="file-input" accept="image/*" hidden>
                     </div>
 
-                    <img id="result-image" src="" alt="Result" crossorigin="anonymous">
+                    <img id="result-image" class="hidden" alt="Result" crossorigin="anonymous">
                     
                     <div id="loader-ui" class="loader-overlay hidden">
                         <div class="scanner"></div>
-                        <p>SCANNING...</p>
+                        <p>PROCESSING HQ IMAGE...</p>
                     </div>
 
                 </div>
             </div>
 
             <aside id="editor-ui" class="sidebar hidden">
-                <div class="sidebar-header">
-                    <h2>🛠 Tools</h2>
-                </div>
+                <div class="sidebar-header"><h2>🛠 Tools</h2></div>
 
                 <div class="control-group">
-                    <label>Background</label>
+                    <label>Background Color</label>
                     <div class="color-options">
                         <button class="color-btn transparent selected" onclick="setBg('transparent')"></button>
                         <button class="color-btn white" onclick="setBg('#ffffff')"></button>
@@ -75,7 +73,7 @@
                 </div>
 
                 <div class="action-buttons">
-                    <button class="btn-primary" onclick="downloadImage()">Download PNG</button>
+                    <button class="btn-primary" onclick="downloadImage()">Download HD</button>
                     <button class="btn-secondary" onclick="resetApp()">New Image</button>
                 </div>
             </aside>

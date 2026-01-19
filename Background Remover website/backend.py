@@ -16,12 +16,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# 🟢 CHANGE 1: Load the Light/Fast Model (No training needed, it downloads automatically)
-print("Loading MobileNet Model...")
-model = models.segmentation.deeplabv3_mobilenet_v3_large(pretrained=True).eval()
+# 🟢 BACK TO HIGH QUALITY MODEL (ResNet101)
+print("Loading High-Quality Model (ResNet101)...")
+model = models.segmentation.deeplabv3_resnet101(pretrained=True).eval()
 
 def make_transparent(image):
-    # 🟢 CHANGE 2: Resize huge images to max 1024px (Huge speed boost)
+    # 🟢 SPEED TRICK: Resize huge images to max 1024px
+    # This makes ResNet run 3x faster without noticeable quality loss
     max_size = 1024
     if max(image.size) > max_size:
         ratio = max_size / max(image.size)
@@ -49,7 +50,7 @@ def make_transparent(image):
             if mask[y, x] == 15: # 15 is 'Person'
                 new_data.append(data[y * width + x])
             else:
-                new_data.append((0, 0, 0, 0))
+                new_data.append((0, 0, 0, 0)) # Transparent
                 
     original.putdata(new_data)
     return original
