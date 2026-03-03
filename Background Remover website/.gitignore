@@ -1,0 +1,15 @@
+# Ignore the heavy model file (GitHub limit is 100MB)
+model/*.pth
+*.pth
+
+# Ignore the local database
+history.db
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore environment folders (if you have them)
+env/
+venv/
+.vscode/

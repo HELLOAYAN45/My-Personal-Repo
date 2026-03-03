@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionExtract AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
+                    <path d="M2 17L12 22L22 17"/>
+                    <path d="M2 12L12 17L22 12"/>
+                </svg>
+                <h1>VisionExtract</h1>
+            </div>
+            <div id="status-badge" class="badge">⚡ High-Res Model Active</div>
+        </header>
+
+        <main>
+            <div class="stage-container">
+                <div id="image-stage" class="image-stage">
+                    
+                    <div id="drop-zone" class="drop-zone">
+                        <div class="icon-stack">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                            </svg>
+                        </div>
+                        <h3>Upload Image</h3>
+                        <p>Drag & drop or click</p>
+                        <input type="file" id="file-input" accept="image/*" hidden>
+                    </div>
+
+                    <img id="result-image" class="hidden" alt="Result" crossorigin="anonymous">
+                    
+                    <div id="loader-ui" class="loader-overlay hidden">
+                        <div class="scanner"></div>
+                        <p>PROCESSING HQ IMAGE...</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <aside id="editor-ui" class="sidebar hidden">
+                <div class="sidebar-header"><h2>🛠 Tools</h2></div>
+
+                <div class="control-group">
+                    <label>Background Color</label>
+                    <div class="color-options">
+                        <button class="color-btn transparent selected" onclick="setBg('transparent')"></button>
+                        <button class="color-btn white" onclick="setBg('#ffffff')"></button>
+                        <button class="color-btn black" onclick="setBg('#000000')"></button>
+                        <button class="color-btn purple" onclick="setBg('#6366f1')"></button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Brightness</label>
+                    <input type="range" id="brightness" min="50" max="150" value="100">
+                </div>
+
+                <div class="control-group">
+                    <label>Contrast</label>
+                    <input type="range" id="contrast" min="50" max="150" value="100">
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-primary" onclick="downloadImage()">Download HD</button>
+                    <button class="btn-secondary" onclick="resetApp()">New Image</button>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
